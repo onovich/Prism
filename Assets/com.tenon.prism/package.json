@@ -1,0 +1,19 @@
+{
+    "name": "com.tenon.prism",
+    "version": "0.0.0",
+    "unity": "2019.4",
+    "author": {
+        "name": "onovich",
+        "email": "onovich1110@gmail.com"
+    },
+    "displayName": "TenonKit.Prism",
+    "description": "A VFX Library.",
+    "documentationURL": "https://github.com/onovich/Prism",
+    "hideInEditor": false,
+    "category": "VFX",
+    "keywords": [
+        "TenonKit",
+        "vfx"
+    ],
+    "unityRelease": "16f1"
+}
