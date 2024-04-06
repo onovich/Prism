@@ -1,0 +1,16 @@
+{
+    "name": "TenonKit.Prism.Sample",
+    "rootNamespace": "",
+    "references": [
+        "GUID:eead81feccfbc42db851edfab9d4ffd3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
