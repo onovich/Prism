@@ -84,7 +84,8 @@ namespace TenonKit.Prism {
             PLog.Log($"生成特效: 特效名称: {vfxName}; 特效状态: {state.ToCustomString()}");
 
             var vfxPrefab = ctx.GetVFXAssetOrDefault(vfxName);
-            if (vfxPrefab = null) {
+            if (vfxPrefab == null) {
+                PLog.Error($"特效资源不存在: {vfxName}");
                 return false;
             }
 

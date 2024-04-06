@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TenonKit.Prism {
+namespace TenonKit.Prism.Sample {
 
     public class PathElement : MonoBehaviour {
 
