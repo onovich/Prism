@@ -17,19 +17,6 @@ namespace TenonKit.Prism {
             ctx.Inject(vfxRoot);
         }
 
-        // Load
-        public async Task LoadAssets() {
-            try {
-                var lable = ctx.assetsLabel;
-                var list = await Addressables.LoadAssetsAsync<GameObject>(lable, null).Task;
-                foreach (var prefab in list) {
-                    ctx.Asset_AddPrefab(prefab.name, prefab);
-                }
-            } catch (Exception e) {
-                PLog.Error(e.ToString());
-            }
-        }
-
         // 预生成到对象
         public int TryPreSpawnVFX_ToTarget(string vfxName,
                                            Sprite[] frames,

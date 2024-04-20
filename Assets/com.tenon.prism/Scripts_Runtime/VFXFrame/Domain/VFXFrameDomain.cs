@@ -224,13 +224,7 @@ namespace TenonKit.Prism {
                                 out VFXFramePlayerEntity entity) {
 
             var repo = ctx.Repo;
-            var vfxPrefab = ctx.GetVFXAssetOrDefault(vfxName);
-            if (vfxPrefab == null) {
-                PLog.Error($"特效资源不存在: {vfxName}");
-                entity = null;
-                return false;
-            }
-            var go = GameObject.Instantiate(vfxPrefab);
+            var go = new GameObject();
 
             entity = VFXFrameFactory.SpawnVFXPlayer(ctx,
                                                     go,

@@ -6,7 +6,6 @@ namespace TenonKit.Prism.Sample {
     public class FrameSampleEntry : MonoBehaviour {
 
         VFXFrameCore vfxCore;
-        bool isInit = false;
 
         [Header("Role And Path")]
         [SerializeField] RoleEntity role;
@@ -42,12 +41,7 @@ namespace TenonKit.Prism.Sample {
             Transform vfxRoot = GameObject.Find("VFXRoot").transform;
             vfxCore = new VFXFrameCore("VFX_Frame", vfxRoot);
 
-            Action main = async () => {
-                await vfxCore.LoadAssets();
-                Init();
-                isInit = true;
-            };
-            main.Invoke();
+            Init();
         }
 
         void Init() {
@@ -91,9 +85,6 @@ namespace TenonKit.Prism.Sample {
 
         void Update() {
 
-            if (!isInit) {
-                return;
-            }
             var dt = Time.deltaTime;
 
             var pointer = path.TickPointerMove(dt);
