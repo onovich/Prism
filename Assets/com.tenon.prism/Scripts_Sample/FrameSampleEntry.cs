@@ -39,7 +39,7 @@ namespace TenonKit.Prism.Sample {
             frameInterval = 1f / 12f;
 
             Transform vfxRoot = GameObject.Find("VFXRoot").transform;
-            vfxCore = new VFXFrameCore("VFX_Frame", vfxRoot);
+            vfxCore = new VFXFrameCore(vfxRoot);
 
             Init();
         }
