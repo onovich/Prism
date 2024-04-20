@@ -1,0 +1,5 @@
+# VFXFrame
+- SetFlipX
+- SetSortingLayer
+- DelayTearDown
+- FadingOut
