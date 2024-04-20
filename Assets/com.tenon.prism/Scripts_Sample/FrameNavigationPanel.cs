@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace TenonKit.Prism.Sample {
 
-    public class NavigationPanel : MonoBehaviour {
+    public class FrameNavigationPanel : MonoBehaviour {
 
         [SerializeField] Button btn_addToWorld;
         [SerializeField] Button btn_addToTarget;

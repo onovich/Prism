@@ -87,7 +87,8 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - VFX
+    - VFX_Particel
+    - VFX_Frame
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 4a2b1db6ff0654ee2b0e8ac4636217a9, type: 2}

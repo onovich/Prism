@@ -912,7 +912,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 754120994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aca350658e694f198520e0d2e90a9cf, type: 3}
+  m_Script: {fileID: 11500000, guid: fb96c36519f804257bbd9715bc4353db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   btn_addToWorld: {fileID: 352040281}
@@ -1754,13 +1754,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2073178136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1cb147a14103e4aa5c93e782b59b0f, type: 3}
+  m_Script: {fileID: 11500000, guid: f68d22126d70849b5a49829967209d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   role: {fileID: 101724361}
   path: {fileID: 1615241902}
   preSpawnRoot: {fileID: 700096454}
   navigationPanel: {fileID: 754120999}
+  frames:
+  - {fileID: 21300000, guid: 2ba4b3a11775b419ca91cfa4a90e4243, type: 3}
+  - {fileID: 21300000, guid: 67942370904574448a4a543deb7aa3c2, type: 3}
+  - {fileID: 21300000, guid: a6dc929a8d2364200841e541ebb65d5b, type: 3}
+  - {fileID: 21300000, guid: ccb82ea604eaf416a85e2016199ff24b, type: 3}
+  - {fileID: 21300000, guid: 320dab0a59b4643748f6da95bca7247a, type: 3}
+  - {fileID: 21300000, guid: dfbed9488cb734307a7f7e525052ab2d, type: 3}
+  - {fileID: 21300000, guid: 817533d9a9d624f608fe329f783a6f14, type: 3}
+  - {fileID: 21300000, guid: 7d6f1d6b5419f41b1bc9fedf04cecfa8, type: 3}
+  isLoop: 0
 --- !u!1 &2084945475
 GameObject:
   m_ObjectHideFlags: 0

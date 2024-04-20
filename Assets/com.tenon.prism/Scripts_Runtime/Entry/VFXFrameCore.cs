@@ -53,6 +53,10 @@ namespace TenonKit.Prism {
             return VFXFrameDomain.TryPlayManualy(ctx, vfxID);
         }
 
+        public bool TryRePlayManualy(int vfxID) {
+            return VFXFrameDomain.TryRePlayManualy(ctx, vfxID);
+        }
+
         public bool TryStopManualy(int vfxID) {
             return VFXFrameDomain.TryStopVFXManualy(ctx, vfxID);
         }
@@ -65,7 +69,7 @@ namespace TenonKit.Prism {
                 // 播放
                 entity.TickPlay(dt);
 
-                if (entity.state == VFXFrameState.Playing) {
+                if (entity.State == VFXFrameState.Playing) {
                     // 同步坐标
                     VFXFrameDomain.SyncPos(ctx, entity);
                     return;
@@ -73,7 +77,7 @@ namespace TenonKit.Prism {
             });
 
             // 销毁待移除对象
-            vfxRepo.RemoveAll(vfx => vfx.state == VFXFrameState.Stop);
+            vfxRepo.RemoveAll(vfx => vfx.State == VFXFrameState.End);
         }
 
         public void TearDown() {

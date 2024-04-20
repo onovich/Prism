@@ -14,7 +14,6 @@ namespace TenonKit.Prism {
 
         internal void Add(VFXFramePlayerEntity entity) {
             all[entity.vfxID] = entity;
-            entity.Stop();
         }
 
         internal void Foreach(Action<int, VFXFramePlayerEntity> action) {

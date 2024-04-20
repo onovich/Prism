@@ -9,7 +9,8 @@ namespace TenonKit.Prism {
         internal string vfxName;
 
         // State
-        internal VFXFrameState state;
+        VFXFrameState state;
+        public VFXFrameState State => state;
         bool isFlipX;
 
         // Frames
@@ -19,32 +20,34 @@ namespace TenonKit.Prism {
         // Attr
         internal bool isLoop;
         float frameInterval;
+        bool isManural;
 
         // Timer
         float timer;
-
-        // Render
-        SpriteRenderer sr;
 
         // Attach
         internal bool hasAttachTarget;
         internal Transform attachTarget;
 
-        // GameObject
+        // High Level
         internal GameObject go;
+        internal SpriteRenderer spr;
 
         // Pos
         internal Vector3 offset;
 
         internal VFXFramePlayerEntity() { }
 
-        internal void Init(string vfxName, int id, Sprite[] frames, bool isLoop, float frameInterval, VFXFrameState state) {
+        internal void Init(string vfxName, int id, Sprite[] frames, bool isManural, bool isLoop, float frameInterval, VFXFrameState state) {
             this.vfxName = vfxName;
             this.vfxID = id;
             this.allFrame = frames;
+            this.currentFrameIndex = 0;
+            this.isManural = isManural;
             this.isLoop = isLoop;
             this.frameInterval = frameInterval;
             this.state = state;
+            timer = 0;
         }
 
         internal void TearDown() {
@@ -64,7 +67,7 @@ namespace TenonKit.Prism {
 
             currentFrameIndex++;
             if (currentFrameIndex < allFrame.Length) {
-                sr.sprite = allFrame[currentFrameIndex];
+                spr.sprite = allFrame[currentFrameIndex];
                 return;
             }
 
@@ -72,11 +75,41 @@ namespace TenonKit.Prism {
                 currentFrameIndex = 0;
                 return;
             }
-            state = VFXFrameState.End;
+
+            if (isManural) {
+                Stop();
+            } else {
+                End();
+            }
+        }
+
+        void EnableSpr() {
+            spr.enabled = true;
+        }
+
+        void DisableSpr() {
+            spr.enabled = false;
         }
 
         internal void Stop() {
             state = VFXFrameState.Stop;
+            DisableSpr();
+        }
+
+        internal void End() {
+            state = VFXFrameState.End;
+            DisableSpr();
+        }
+
+        internal void Play() {
+            state = VFXFrameState.Playing;
+            EnableSpr();
+        }
+
+        internal void RePlay() {
+            state = VFXFrameState.Playing;
+            currentFrameIndex = 0;
+            EnableSpr();
         }
 
         internal void SetParent(Transform parent, bool isWorldPosStays = false) {

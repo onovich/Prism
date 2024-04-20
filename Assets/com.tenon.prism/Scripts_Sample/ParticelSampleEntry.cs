@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TenonKit.Prism.Sample {
 
-    public class SampleEntry : MonoBehaviour {
+    public class ParticelSampleEntry : MonoBehaviour {
 
         VFXParticelCore vfxCore;
         bool isInit = false;
@@ -11,7 +11,7 @@ namespace TenonKit.Prism.Sample {
         [SerializeField] RoleEntity role;
         [SerializeField] PathEntity path;
         [SerializeField] Transform preSpawnRoot;
-        [SerializeField] NavigationPanel navigationPanel;
+        [SerializeField] ParticelNavigationPanel navigationPanel;
 
         int preSpawnVFXID;
 
@@ -21,7 +21,7 @@ namespace TenonKit.Prism.Sample {
             PLog.Warning = Debug.LogWarning;
 
             Transform vfxRoot = GameObject.Find("VFXRoot").transform;
-            vfxCore = new VFXParticelCore("VFX", vfxRoot);
+            vfxCore = new VFXParticelCore("VFX_Particel", vfxRoot);
 
             Action main = async () => {
                 await vfxCore.LoadAssets();

@@ -3,15 +3,19 @@ using UnityEngine;
 
 namespace TenonKit.Prism.Sample {
 
-    public class ParticelSampleEntry : MonoBehaviour {
+    public class FrameSampleEntry : MonoBehaviour {
 
-        VFXParticelCore vfxCore;
+        VFXFrameCore vfxCore;
         bool isInit = false;
 
         [SerializeField] RoleEntity role;
         [SerializeField] PathEntity path;
         [SerializeField] Transform preSpawnRoot;
-        [SerializeField] NavigationPanel navigationPanel;
+        [SerializeField] FrameNavigationPanel navigationPanel;
+
+        [SerializeField] Sprite[] frames;
+        [SerializeField] bool isLoop;
+        float frameInterval;
 
         int preSpawnVFXID;
 
@@ -20,8 +24,10 @@ namespace TenonKit.Prism.Sample {
             PLog.Error = Debug.LogError;
             PLog.Warning = Debug.LogWarning;
 
+            frameInterval = 1f / 12f;
+
             Transform vfxRoot = GameObject.Find("VFXRoot").transform;
-            vfxCore = new VFXParticelCore("VFX", vfxRoot);
+            vfxCore = new VFXFrameCore("VFX_Frame", vfxRoot);
 
             Action main = async () => {
                 await vfxCore.LoadAssets();
@@ -32,7 +38,7 @@ namespace TenonKit.Prism.Sample {
         }
 
         void Init() {
-            preSpawnVFXID = vfxCore.TryPreSpawnVFX_ToWorldPos("VFX_01", 3f, preSpawnRoot.position);
+            preSpawnVFXID = vfxCore.TryPreSpawnVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, preSpawnRoot.position);
 
             path.Ctor();
             path.InitMoveState();
@@ -45,15 +51,15 @@ namespace TenonKit.Prism.Sample {
         }
 
         void OnAddToWorld() {
-            vfxCore.TrySpawnAndPlayVFX_ToWorldPos("VFX_01", 3f, role.Pos);
+            vfxCore.TrySpawnAndPlayVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, role.Pos);
         }
 
         void OnAddToTarget() {
-            vfxCore.TrySpawnAndPlayVFX_ToTarget("VFX_01", 3f, role.Transform, Vector3.zero);
+            vfxCore.TrySpawnAndPlayVFX_ToTarget("VFX_02", frames, isLoop, frameInterval, role.Transform, Vector3.zero);
         }
 
         void OnPlayManualy() {
-            vfxCore.TryPlayManualy(preSpawnVFXID);
+            vfxCore.TryRePlayManualy(preSpawnVFXID);
         }
 
         void OnStopManualy() {

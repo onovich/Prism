@@ -21,7 +21,13 @@ MonoBehaviour:
     m_Address: VFX_01
     m_ReadOnly: 0
     m_SerializedLabels:
-    - VFX
+    - VFX_Particel
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c63e482711534fd8bf8afdde6af8339
+    m_Address: VFX_02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - VFX_Frame
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 10726c35e6c8c4b408f360e41d86c1e0, type: 2}
