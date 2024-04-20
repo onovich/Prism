@@ -3,3 +3,4 @@
 - SetSortingLayer
 - DelayTearDown
 - FadingOut
+- BakeTool
