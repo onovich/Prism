@@ -1,6 +1,6 @@
 namespace TenonKit.Prism {
 
-    internal enum VFXState {
+    internal enum VFXParticleState {
 
         None,
         Idle,
@@ -10,18 +10,18 @@ namespace TenonKit.Prism {
 
     }
 
-    internal static class VFXStateTypeExtensions {
-        internal static string ToCustomString(this VFXState attr) {
+    internal static class VFXParticleStateTypeExtensions {
+        internal static string ToCustomString(this VFXParticleState attr) {
             switch (attr) {
-                case VFXState.None:
+                case VFXParticleState.None:
                     return "None";
-                case VFXState.Idle:
+                case VFXParticleState.Idle:
                     return "待机";
-                case VFXState.Prepare:
+                case VFXParticleState.Prepare:
                     return "准备";
-                case VFXState.Playing:
+                case VFXParticleState.Playing:
                     return "播放中";
-                case VFXState.End:
+                case VFXParticleState.End:
                     return "已结束";
                 default:
                     return "Unknown";

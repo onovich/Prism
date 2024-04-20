@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace TenonKit.Prism {
 
-    internal class VFXContext {
+    internal class VFXParticleContext {
 
         // Service
-        VFXIDService vfxIDService;
-        internal VFXIDService VFXIDService => vfxIDService;
+        VFXParticleIDService vfxIDService;
+        internal VFXParticleIDService VFXIDService => vfxIDService;
 
         // Repo
-        VFXRepo repo;
-        internal VFXRepo Repo => repo;
+        VFXParticleRepo repo;
+        internal VFXParticleRepo Repo => repo;
 
         // Root
         Transform vfxRoot;
@@ -24,9 +24,9 @@ namespace TenonKit.Prism {
         // Const
         internal string AssetsLabel;
 
-        internal VFXContext() {
-            repo = new VFXRepo();
-            vfxIDService = new VFXIDService();
+        internal VFXParticleContext() {
+            repo = new VFXParticleRepo();
+            vfxIDService = new VFXParticleIDService();
             prefabDict = new Dictionary<string, GameObject>();
         }
 

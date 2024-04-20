@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace TenonKit.Prism {
 
-    internal class VFXPlayerEntity {
+    internal class VFXParticlePlayerEntity {
 
         int vfxID;
         internal int VFXID => vfxID;
 
-        VFXState state;
-        internal VFXState State => state;
-        internal void SetState(VFXState value) => state = value;
+        VFXParticleState state;
+        internal VFXParticleState State => state;
+        internal void SetState(VFXParticleState value) => state = value;
 
         ParticleSystem rootParticle;
         ParticleSystem[] allParticle;
@@ -43,9 +43,9 @@ namespace TenonKit.Prism {
         internal Vector3 Offset => offset;
         internal void SetOffset(Vector3 value) => offset = value;
 
-        internal VFXPlayerEntity() { }
+        internal VFXParticlePlayerEntity() { }
 
-        internal void Init(string vfxName, int id, float maintainSec, VFXState state) {
+        internal void Init(string vfxName, int id, float maintainSec, VFXParticleState state) {
             this.vfxName = vfxName;
             this.vfxID = id;
             this.maintainSec = maintainSec;

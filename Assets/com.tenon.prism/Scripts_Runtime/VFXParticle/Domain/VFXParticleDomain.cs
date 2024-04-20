@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace TenonKit.Prism {
 
-    internal static class VFXDomain {
+    internal static class VFXParticleDomain {
 
         // 同步坐标
-        internal static void SyncPos(VFXContext ctx, VFXPlayerEntity entity) {
+        internal static void SyncPos(VFXParticleContext ctx, VFXParticlePlayerEntity entity) {
             if (entity == null || !entity.HasAttachTarget || entity.AttachTarget == null) {
                 return;
             }
@@ -15,38 +15,38 @@ namespace TenonKit.Prism {
         }
 
         // 手动执行播放
-        internal static bool TryPlayManualy(VFXContext ctx, int vfxID) {
+        internal static bool TryPlayManualy(VFXParticleContext ctx, int vfxID) {
             var repo = ctx.Repo;
             if (!repo.TryGet(vfxID, out var entity)) {
                 return false;
             }
 
-            entity.SetState(VFXState.Prepare);
+            entity.SetState(VFXParticleState.Prepare);
             return true;
         }
 
         // 预生成, 附加到对象, 不自动播放, 只能通过手动执行播放, 默认无延时
-        internal static int TryPreSpawnVFX_ToTarget(VFXContext ctx, string vfxName, float maintainSec, Transform attachTarget, Vector3 offset, bool adjustDir = false) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, attachTarget, offset, adjustDir, VFXState.Idle);
+        internal static int TryPreSpawnVFX_ToTarget(VFXParticleContext ctx, string vfxName, float maintainSec, Transform attachTarget, Vector3 offset, bool adjustDir = false) {
+            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, attachTarget, offset, adjustDir, VFXParticleState.Idle);
         }
 
         // 预生成, 附加到世界坐标, 不自动播放, 只能通过手动执行播放, 默认无延时
-        internal static int TryPreSpawnVFX_ToWorldPos(VFXContext ctx, string vfxName, float maintainSec, Vector3 pos, bool adjustDir = false) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, null, pos, adjustDir, VFXState.Idle);
+        internal static int TryPreSpawnVFX_ToWorldPos(VFXParticleContext ctx, string vfxName, float maintainSec, Vector3 pos, bool adjustDir = false) {
+            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, null, pos, adjustDir, VFXParticleState.Idle);
         }
 
         // 生成, 附加到对象, 并自动播放, 默认无延时
-        internal static int TrySpawnAndPlayVFX_ToTarget(VFXContext ctx, string vfxName, float maintainSec, Transform attachTarget, Vector3 offset, bool adjustDir = false) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, attachTarget, offset, adjustDir, VFXState.Prepare);
+        internal static int TrySpawnAndPlayVFX_ToTarget(VFXParticleContext ctx, string vfxName, float maintainSec, Transform attachTarget, Vector3 offset, bool adjustDir = false) {
+            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, attachTarget, offset, adjustDir, VFXParticleState.Prepare);
         }
 
         // 生成, 附加到世界坐标, 并自动播放，默认无延时
-        internal static int TrySpawnAndPlayVFX_ToWorldPos(VFXContext ctx, string vfxName, float maintainSec, Vector3 pos) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, null, pos, false, VFXState.Prepare);
+        internal static int TrySpawnAndPlayVFX_ToWorldPos(VFXParticleContext ctx, string vfxName, float maintainSec, Vector3 pos) {
+            return TrySpawnAndDelayPlayVFX(ctx, vfxName, maintainSec, null, pos, false, VFXParticleState.Prepare);
         }
 
         // 生成, 并播放
-        static int TrySpawnAndDelayPlayVFX(VFXContext ctx, string vfxName, float maintainSec, Transform attachTarget, Vector3 offset, bool adjustDir, VFXState state) {
+        static int TrySpawnAndDelayPlayVFX(VFXParticleContext ctx, string vfxName, float maintainSec, Transform attachTarget, Vector3 offset, bool adjustDir, VFXParticleState state) {
             if (vfxName == null) {
                 return -1;
             }
@@ -77,10 +77,10 @@ namespace TenonKit.Prism {
             return entity.VFXID;
         }
 
-        static bool TrySpawnVFX(VFXContext ctx, string vfxName, float maintainSec, VFXState state, out VFXPlayerEntity entity) {
+        static bool TrySpawnVFX(VFXParticleContext ctx, string vfxName, float maintainSec, VFXParticleState state, out VFXParticlePlayerEntity entity) {
 
             var repo = ctx.Repo;
-            entity = VFXFactory.SpawnVFXPlayer(ctx, vfxName, maintainSec, state);
+            entity = VFXParticleFactory.SpawnVFXPlayer(ctx, vfxName, maintainSec, state);
             PLog.Log($"生成特效: 特效名称: {vfxName}; 特效状态: {state.ToCustomString()}");
 
             var vfxPrefab = ctx.GetVFXAssetOrDefault(vfxName);
@@ -95,7 +95,7 @@ namespace TenonKit.Prism {
             return true;
         }
 
-        internal static bool TryStopVFXManualy(VFXContext ctx, int vfxID) {
+        internal static bool TryStopVFXManualy(VFXParticleContext ctx, int vfxID) {
             var repo = ctx.Repo;
             if (!repo.TryGet(vfxID, out var entity)) {
                 return false;

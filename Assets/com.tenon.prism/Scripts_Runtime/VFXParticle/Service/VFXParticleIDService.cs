@@ -1,11 +1,11 @@
 namespace TenonKit.Prism {
 
-    internal class VFXIDService {
+    internal class VFXParticleIDService {
 
         // Battle
         int vfxIDRecord;
 
-        internal VFXIDService() {
+        internal VFXParticleIDService() {
             this.vfxIDRecord = 0;
         }
 

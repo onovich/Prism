@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TenonKit.Prism.Sample {
 
-    public class ParticelSampleEntry : MonoBehaviour {
+    public class SampleEntry : MonoBehaviour {
 
         VFXParticelCore vfxCore;
         bool isInit = false;
