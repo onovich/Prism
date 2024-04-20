@@ -5,7 +5,7 @@ Prism, a lightweight special effects management library. <br/>
 ![](https://github.com/onovich/Prism/blob/main/Assets/com.tenon.prism/Resources_Sample/sample_cover.jpg)
 
 Prism provides managed functionality for the VFX lifecycle within Unity, currently supporting particle effects and sequence frame effects, with support for effects based on AnimationClip planned.<br/>
-**Prism 为 Unity 内的 VFX 生命周期提供托管功能，目前已支撑粒子特效、序列帧特效，基于 AnimationClip 的特效支持则在计划中。**
+**Prism 为 Unity 里的 VFX 提供生命周期托管，目前已支持粒子特效、序列帧特效，基于 AnimationClip 的特效支持则仍在计划中。**
 
 Effects can be generated at fixed locations in the scene or on moving objects. For attachments to moving objects, position synchronization is used instead of setting them as child objects. Therefore, even if the moving object is destroyed, the playback of the effect will not be interrupted, which better meets the practical needs of games.<br/>
 **特效可以生成在场景中的固定位置，也可以生成在移动中的物体上。对移动物体的附加，采用了位置同步，而非将其设为子对象，因此即使移动物体被销毁，也不会中断特效的播放，这更符合游戏的实际需要。**
