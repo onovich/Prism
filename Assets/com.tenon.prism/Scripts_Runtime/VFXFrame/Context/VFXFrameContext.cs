@@ -18,9 +18,6 @@ namespace TenonKit.Prism {
         Transform vfxRoot;
         internal Transform VFXRoot => vfxRoot;
 
-        // Const
-        internal string assetsLabel;
-
         internal VFXFrameContext() {
             repo = new VFXFrameRepo();
             vfxIDService = new VFXFrameIDService();

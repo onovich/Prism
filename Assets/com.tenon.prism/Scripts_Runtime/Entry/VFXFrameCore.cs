@@ -11,9 +11,8 @@ namespace TenonKit.Prism {
 
         VFXFrameContext ctx;
 
-        public VFXFrameCore(string assetsLabel, Transform vfxRoot) {
+        public VFXFrameCore(Transform vfxRoot) {
             ctx = new VFXFrameContext();
-            ctx.assetsLabel = assetsLabel;
             ctx.Inject(vfxRoot);
         }
 
