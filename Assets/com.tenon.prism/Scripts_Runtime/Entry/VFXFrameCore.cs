@@ -30,23 +30,87 @@ namespace TenonKit.Prism {
         }
 
         // 预生成到对象
-        public int TryPreSpawnVFX_ToTarget(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset, bool isFlipX = false) {
-            return VFXFrameDomain.TryPreSpawnVFX_ToTarget(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, attachTarget, offset);
+        public int TryPreSpawnVFX_ToTarget(string vfxName,
+                                           Sprite[] frames,
+                                           bool isLoop,
+                                           float frameInterval,
+                                           Transform attachTarget,
+                                           Vector3 offset,
+                                           bool isFlipX = false,
+                                           string sortingLayerName = "Default",
+                                           int sortingOrder = 0) {
+            return VFXFrameDomain.TryPreSpawnVFX_ToTarget(ctx,
+                                                          vfxName,
+                                                          frames,
+                                                          isFlipX,
+                                                          isLoop,
+                                                          frameInterval,
+                                                          attachTarget,
+                                                          offset,
+                                                          sortingLayerName,
+                                                          sortingOrder);
         }
 
         // 预生成到世界坐标
-        public int TryPreSpawnVFX_ToWorldPos(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Vector3 pos, bool isFlipX = false) {
-            return VFXFrameDomain.TryPreSpawnVFX_ToWorldPos(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, pos);
+        public int TryPreSpawnVFX_ToWorldPos(string vfxName,
+                                             Sprite[] frames,
+                                             bool isLoop,
+                                             float frameInterval,
+                                             Vector3 pos,
+                                             bool isFlipX = false,
+                                             string sortingLayerName = "Default",
+                                             int sortingOrder = 0) {
+            return VFXFrameDomain.TryPreSpawnVFX_ToWorldPos(ctx,
+                                                            vfxName,
+                                                            frames,
+                                                            isFlipX,
+                                                            isLoop,
+                                                            frameInterval,
+                                                            pos,
+                                                            sortingLayerName,
+                                                            sortingOrder);
         }
 
         // 生成到对象
-        public int TrySpawnAndPlayVFX_ToTarget(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset, bool isFlipX = false) {
-            return VFXFrameDomain.TrySpawnAndPlayVFX_ToTarget(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, attachTarget, offset);
+        public int TrySpawnAndPlayVFX_ToTarget(string vfxName,
+                                               Sprite[] frames,
+                                               bool isLoop,
+                                               float frameInterval,
+                                               Transform attachTarget,
+                                               Vector3 offset,
+                                               bool isFlipX = false,
+                                               string sortingLayerName = "Default",
+                                               int sortingOrder = 0) {
+            return VFXFrameDomain.TrySpawnAndPlayVFX_ToTarget(ctx,
+                                                              vfxName,
+                                                              frames,
+                                                              isFlipX,
+                                                              isLoop,
+                                                              frameInterval,
+                                                              attachTarget,
+                                                              offset,
+                                                              sortingLayerName,
+                                                              sortingOrder);
         }
 
         // 生成到世界坐标
-        public int TrySpawnAndPlayVFX_ToWorldPos(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Vector3 pos, bool isFlipX = false) {
-            return VFXFrameDomain.TrySpawnAndPlayVFX_ToWorldPos(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, pos);
+        public int TrySpawnAndPlayVFX_ToWorldPos(string vfxName,
+                                                 Sprite[] frames,
+                                                 bool isLoop,
+                                                 float frameInterval,
+                                                 Vector3 pos,
+                                                 bool isFlipX = false,
+                                                 string sortingLayerName = "Default",
+                                                 int sortingOrder = 0) {
+            return VFXFrameDomain.TrySpawnAndPlayVFX_ToWorldPos(ctx,
+                                                                vfxName,
+                                                                frames,
+                                                                isFlipX,
+                                                                isLoop,
+                                                                frameInterval,
+                                                                pos,
+                                                                sortingLayerName,
+                                                                sortingOrder);
         }
 
         // 手动播放预生成动画

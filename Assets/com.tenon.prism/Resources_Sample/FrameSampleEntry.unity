@@ -1772,6 +1772,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7d6f1d6b5419f41b1bc9fedf04cecfa8, type: 3}
   isLoop: 0
   isFlipX: 0
+  sortingLayerName: VFX
+  sortingOrder: 100
 --- !u!1 &2084945475
 GameObject:
   m_ObjectHideFlags: 0

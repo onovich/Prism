@@ -1,5 +1,4 @@
 # VFXFrame
-- SetSortingLayer
 - DelayTearDown
 - FadingOut
 - BakeTool

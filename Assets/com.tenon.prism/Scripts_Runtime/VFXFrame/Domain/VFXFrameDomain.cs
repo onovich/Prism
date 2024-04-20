@@ -46,32 +46,131 @@ namespace TenonKit.Prism {
         }
 
         // 预生成, 附加到对象, 不自动播放, 只能通过手动执行播放, 默认无延时
-        internal static int TryPreSpawnVFX_ToTarget(VFXFrameContext ctx, string vfxName, Sprite[] frames, bool isFlipX, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, frames, true, isFlipX, isLoop, frameInterval, attachTarget, offset, VFXFrameState.Stop);
+        internal static int TryPreSpawnVFX_ToTarget(VFXFrameContext ctx,
+                                                    string vfxName,
+                                                    Sprite[] frames,
+                                                    bool isFlipX,
+                                                    bool isLoop,
+                                                    float frameInterval,
+                                                    Transform attachTarget,
+                                                    Vector3 offset,
+                                                    string sortingLayerName,
+                                                    int sortingOrder) {
+            return TrySpawnAndDelayPlayVFX(ctx,
+                                           vfxName,
+                                           frames,
+                                           true,
+                                           isFlipX,
+                                           isLoop,
+                                           frameInterval,
+                                           attachTarget,
+                                           offset,
+                                           VFXFrameState.Stop,
+                                           sortingLayerName,
+                                           sortingOrder);
         }
 
         // 预生成, 附加到世界坐标, 不自动播放, 只能通过手动执行播放, 默认无延时
-        internal static int TryPreSpawnVFX_ToWorldPos(VFXFrameContext ctx, string vfxName, Sprite[] frames, bool isFlipX, bool isLoop, float frameInterval, Vector3 pos) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, frames, true, isFlipX, isLoop, frameInterval, null, pos, VFXFrameState.Stop);
+        internal static int TryPreSpawnVFX_ToWorldPos(VFXFrameContext ctx,
+                                                      string vfxName,
+                                                      Sprite[] frames,
+                                                      bool isFlipX,
+                                                      bool isLoop,
+                                                      float frameInterval,
+                                                      Vector3 pos,
+                                                      string sortingLayerName,
+                                                      int sortingOrder) {
+            return TrySpawnAndDelayPlayVFX(ctx,
+                                           vfxName,
+                                           frames,
+                                           true,
+                                           isFlipX,
+                                           isLoop,
+                                           frameInterval,
+                                           null,
+                                           pos,
+                                           VFXFrameState.Stop,
+                                           sortingLayerName,
+                                           sortingOrder);
         }
 
         // 生成, 附加到对象, 并自动播放, 默认无延时
-        internal static int TrySpawnAndPlayVFX_ToTarget(VFXFrameContext ctx, string vfxName, Sprite[] frames, bool isFlipX, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, frames, false, isFlipX, isLoop, frameInterval, attachTarget, offset, VFXFrameState.Playing);
+        internal static int TrySpawnAndPlayVFX_ToTarget(VFXFrameContext ctx,
+                                                        string vfxName,
+                                                        Sprite[] frames,
+                                                        bool isFlipX,
+                                                        bool isLoop,
+                                                        float frameInterval,
+                                                        Transform attachTarget,
+                                                        Vector3 offset,
+                                                        string sortingLayerName,
+                                                        int sortingOrder) {
+            return TrySpawnAndDelayPlayVFX(ctx,
+                                           vfxName,
+                                           frames,
+                                           false,
+                                           isFlipX,
+                                           isLoop,
+                                           frameInterval,
+                                           attachTarget,
+                                           offset,
+                                           VFXFrameState.Playing,
+                                           sortingLayerName,
+                                           sortingOrder);
         }
 
         // 生成, 附加到世界坐标, 并自动播放，默认无延时
-        internal static int TrySpawnAndPlayVFX_ToWorldPos(VFXFrameContext ctx, string vfxName, Sprite[] frames, bool isFlipX, bool isLoop, float frameInterval, Vector3 pos) {
-            return TrySpawnAndDelayPlayVFX(ctx, vfxName, frames, false, isFlipX, isLoop, frameInterval, null, pos, VFXFrameState.Playing);
+        internal static int TrySpawnAndPlayVFX_ToWorldPos(VFXFrameContext ctx,
+                                                          string vfxName,
+                                                          Sprite[] frames,
+                                                          bool isFlipX,
+                                                          bool isLoop,
+                                                          float frameInterval,
+                                                          Vector3 pos,
+                                                          string sortingLayerName,
+                                                          int sortingOrder) {
+            return TrySpawnAndDelayPlayVFX(ctx,
+                                           vfxName,
+                                           frames,
+                                           false,
+                                           isFlipX,
+                                           isLoop,
+                                           frameInterval,
+                                           null,
+                                           pos,
+                                           VFXFrameState.Playing,
+                                           sortingLayerName,
+                                           sortingOrder);
         }
 
         // 生成
-        static int TrySpawnAndDelayPlayVFX(VFXFrameContext ctx, string vfxName, Sprite[] frames, bool isManural, bool isFlipX, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset, VFXFrameState state) {
+        static int TrySpawnAndDelayPlayVFX(VFXFrameContext ctx,
+                                           string vfxName,
+                                           Sprite[] frames,
+                                           bool isManural,
+                                           bool isFlipX,
+                                           bool isLoop,
+                                           float frameInterval,
+                                           Transform attachTarget,
+                                           Vector3 offset,
+                                           VFXFrameState state,
+                                           string sortingLayerName,
+                                           int sortingOrder) {
             if (vfxName == null) {
                 return -1;
             }
 
-            if (!TrySpawnVFX(ctx, vfxName, frames, isManural, isFlipX, isLoop, frameInterval, state, out var entity)) {
+            if (!TrySpawnVFX(ctx,
+                             vfxName,
+                             frames,
+                             isManural,
+                             isFlipX,
+                             isLoop,
+                             frameInterval,
+                             state,
+                             sortingLayerName,
+                             sortingOrder,
+                             out var entity)) {
                 return -1;
             }
 
@@ -93,7 +192,17 @@ namespace TenonKit.Prism {
             return entity.vfxID;
         }
 
-        static bool TrySpawnVFX(VFXFrameContext ctx, string vfxName, Sprite[] frames, bool isManural, bool isFlipX, bool isLoop, float frameInterval, VFXFrameState state, out VFXFramePlayerEntity entity) {
+        static bool TrySpawnVFX(VFXFrameContext ctx,
+                                string vfxName,
+                                Sprite[] frames,
+                                bool isManural,
+                                bool isFlipX,
+                                bool isLoop,
+                                float frameInterval,
+                                VFXFrameState state,
+                                string sortingLayerName,
+                                int sortingOrder,
+                                out VFXFramePlayerEntity entity) {
 
             var repo = ctx.Repo;
             var vfxPrefab = ctx.GetVFXAssetOrDefault(vfxName);
@@ -104,7 +213,17 @@ namespace TenonKit.Prism {
             }
             var go = GameObject.Instantiate(vfxPrefab);
 
-            entity = VFXFrameFactory.SpawnVFXPlayer(ctx, go, vfxName, frames, isManural, isFlipX, isLoop, frameInterval, state);
+            entity = VFXFrameFactory.SpawnVFXPlayer(ctx,
+                                                    go,
+                                                    vfxName,
+                                                    frames,
+                                                    isManural,
+                                                    isFlipX,
+                                                    isLoop,
+                                                    frameInterval,
+                                                    state,
+                                                    sortingLayerName,
+                                                    sortingOrder);
             PLog.Log($"生成特效: 特效名称: {vfxName}; 特效状态: {state.ToCustomString()}");
 
             if (isManural) {
