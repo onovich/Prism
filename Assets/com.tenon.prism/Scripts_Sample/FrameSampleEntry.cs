@@ -15,6 +15,7 @@ namespace TenonKit.Prism.Sample {
 
         [SerializeField] Sprite[] frames;
         [SerializeField] bool isLoop;
+        [SerializeField] bool isFlipX;
         float frameInterval;
 
         int preSpawnVFXID;
@@ -38,7 +39,7 @@ namespace TenonKit.Prism.Sample {
         }
 
         void Init() {
-            preSpawnVFXID = vfxCore.TryPreSpawnVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, preSpawnRoot.position);
+            preSpawnVFXID = vfxCore.TryPreSpawnVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, preSpawnRoot.position, isFlipX);
 
             path.Ctor();
             path.InitMoveState();
@@ -51,11 +52,11 @@ namespace TenonKit.Prism.Sample {
         }
 
         void OnAddToWorld() {
-            vfxCore.TrySpawnAndPlayVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, role.Pos);
+            vfxCore.TrySpawnAndPlayVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, role.Pos, isFlipX);
         }
 
         void OnAddToTarget() {
-            vfxCore.TrySpawnAndPlayVFX_ToTarget("VFX_02", frames, isLoop, frameInterval, role.Transform, Vector3.zero);
+            vfxCore.TrySpawnAndPlayVFX_ToTarget("VFX_02", frames, isLoop, frameInterval, role.Transform, Vector3.zero, isFlipX);
         }
 
         void OnPlayManualy() {

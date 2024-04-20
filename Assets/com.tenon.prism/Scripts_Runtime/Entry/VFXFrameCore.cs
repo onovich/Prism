@@ -30,35 +30,43 @@ namespace TenonKit.Prism {
         }
 
         // 预生成到对象
-        public int TryPreSpawnVFX_ToTarget(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset) {
-            return VFXFrameDomain.TryPreSpawnVFX_ToTarget(ctx, vfxName, frames, isLoop, frameInterval, attachTarget, offset);
+        public int TryPreSpawnVFX_ToTarget(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset, bool isFlipX = false) {
+            return VFXFrameDomain.TryPreSpawnVFX_ToTarget(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, attachTarget, offset);
         }
 
         // 预生成到世界坐标
-        public int TryPreSpawnVFX_ToWorldPos(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Vector3 pos) {
-            return VFXFrameDomain.TryPreSpawnVFX_ToWorldPos(ctx, vfxName, frames, isLoop, frameInterval, pos);
+        public int TryPreSpawnVFX_ToWorldPos(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Vector3 pos, bool isFlipX = false) {
+            return VFXFrameDomain.TryPreSpawnVFX_ToWorldPos(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, pos);
         }
 
         // 生成到对象
-        public int TrySpawnAndPlayVFX_ToTarget(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset) {
-            return VFXFrameDomain.TrySpawnAndPlayVFX_ToTarget(ctx, vfxName, frames, isLoop, frameInterval, attachTarget, offset);
+        public int TrySpawnAndPlayVFX_ToTarget(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Transform attachTarget, Vector3 offset, bool isFlipX = false) {
+            return VFXFrameDomain.TrySpawnAndPlayVFX_ToTarget(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, attachTarget, offset);
         }
 
         // 生成到世界坐标
-        public int TrySpawnAndPlayVFX_ToWorldPos(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Vector3 pos) {
-            return VFXFrameDomain.TrySpawnAndPlayVFX_ToWorldPos(ctx, vfxName, frames, isLoop, frameInterval, pos);
+        public int TrySpawnAndPlayVFX_ToWorldPos(string vfxName, Sprite[] frames, bool isLoop, float frameInterval, Vector3 pos, bool isFlipX = false) {
+            return VFXFrameDomain.TrySpawnAndPlayVFX_ToWorldPos(ctx, vfxName, frames, isFlipX, isLoop, frameInterval, pos);
         }
 
+        // 手动播放预生成动画
         public bool TryPlayManualy(int vfxID) {
             return VFXFrameDomain.TryPlayManualy(ctx, vfxID);
         }
 
+        // 手动重播预生成动画
         public bool TryRePlayManualy(int vfxID) {
             return VFXFrameDomain.TryRePlayManualy(ctx, vfxID);
         }
 
+        // 手动停止预生成动画
         public bool TryStopManualy(int vfxID) {
             return VFXFrameDomain.TryStopVFXManualy(ctx, vfxID);
+        }
+
+        // 手动翻转帧动画
+        public void FlipX(int vfxID, bool isFlipX) {
+            VFXFrameDomain.FlipX(ctx, vfxID, isFlipX);
         }
 
         public void Tick(float dt) {

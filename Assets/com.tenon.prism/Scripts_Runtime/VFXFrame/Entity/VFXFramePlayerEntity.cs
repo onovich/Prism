@@ -38,7 +38,7 @@ namespace TenonKit.Prism {
 
         internal VFXFramePlayerEntity() { }
 
-        internal void Init(string vfxName, int id, Sprite[] frames, bool isManural, bool isLoop, float frameInterval, VFXFrameState state) {
+        internal void Init(GameObject go, string vfxName, int id, Sprite[] frames, bool isManural, bool isFlipX, bool isLoop, float frameInterval, VFXFrameState state) {
             this.vfxName = vfxName;
             this.vfxID = id;
             this.allFrame = frames;
@@ -48,6 +48,9 @@ namespace TenonKit.Prism {
             this.frameInterval = frameInterval;
             this.state = state;
             timer = 0;
+            this.go = go;
+            this.spr = go.AddComponent<SpriteRenderer>();
+            SetFlipX(isFlipX);
         }
 
         internal void TearDown() {
@@ -114,6 +117,11 @@ namespace TenonKit.Prism {
 
         internal void SetParent(Transform parent, bool isWorldPosStays = false) {
             go.transform.SetParent(parent, isWorldPosStays);
+        }
+
+        internal void SetFlipX(bool isFlipX) {
+            this.isFlipX = isFlipX;
+            spr.flipX = isFlipX;
         }
 
     }
