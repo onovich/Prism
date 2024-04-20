@@ -1,4 +1,6 @@
+using MortiseFrame.Swing;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace TenonKit.Prism {
 
@@ -11,7 +13,7 @@ namespace TenonKit.Prism {
         // State
         VFXFrameState state;
         public VFXFrameState State => state;
-        bool isFlipX;
+        bool isPreEnd;
 
         // Frames
         Sprite[] allFrame;
@@ -21,9 +23,18 @@ namespace TenonKit.Prism {
         internal bool isLoop;
         float frameInterval;
         bool isManural;
+        float delayEndSec;
+        bool isFlipX;
+
+        // Fading Out
+        MortiseFrame.Swing.EasingMode easingOutMode;
+        EasingType easingOutType;
+        float easingOutDuration;
 
         // Timer
         float timer;
+        float delayEndTimer;
+        float fadingOutTimer;
 
         // Attach
         internal bool hasAttachTarget;
@@ -36,7 +47,11 @@ namespace TenonKit.Prism {
         // Pos
         internal Vector3 offset;
 
-        internal VFXFramePlayerEntity() { }
+        bool isInitDone;
+
+        internal VFXFramePlayerEntity() {
+            isInitDone = false;
+        }
 
         internal void Init(GameObject go,
                            string vfxName,
@@ -63,6 +78,13 @@ namespace TenonKit.Prism {
             SetFlipX(isFlipX);
             spr.sortingLayerName = sortingLayerName;
             spr.sortingOrder = sortingOrder;
+
+            isPreEnd = false;
+            delayEndTimer = 0;
+            fadingOutTimer = 0;
+            EnableSpr();
+
+            isInitDone = true;
         }
 
         internal void TearDown() {
@@ -70,6 +92,9 @@ namespace TenonKit.Prism {
         }
 
         internal void TickPlay(float dt) {
+            if (!isInitDone) {
+                return;
+            }
             if (state != VFXFrameState.Playing) {
                 return;
             }
@@ -91,6 +116,32 @@ namespace TenonKit.Prism {
                 return;
             }
 
+            isPreEnd = true;
+
+        }
+
+        internal void TickEnd(float dt) {
+            if (!isInitDone) {
+                return;
+            }
+            if (!isPreEnd) {
+                return;
+            }
+
+            delayEndTimer += dt;
+            if (delayEndTimer < delayEndSec) {
+                return;
+            }
+
+            fadingOutTimer += dt;
+            if (fadingOutTimer < easingOutDuration) {
+                var a = EasingHelper.Easing(1, 0, fadingOutTimer, easingOutDuration, easingOutType, easingOutMode);
+                var color = spr.color;
+                color.a = a;
+                spr.color = color;
+                return;
+            }
+
             if (isManural) {
                 Stop();
             } else {
@@ -100,6 +151,9 @@ namespace TenonKit.Prism {
 
         void EnableSpr() {
             spr.enabled = true;
+            var color = spr.color;
+            color.a = 1;
+            spr.color = color;
         }
 
         void DisableSpr() {
@@ -124,6 +178,10 @@ namespace TenonKit.Prism {
         internal void RePlay() {
             state = VFXFrameState.Playing;
             currentFrameIndex = 0;
+            isPreEnd = false;
+            timer = 0;
+            delayEndTimer = 0;
+            fadingOutTimer = 0;
             EnableSpr();
         }
 
@@ -134,6 +192,16 @@ namespace TenonKit.Prism {
         internal void SetFlipX(bool isFlipX) {
             this.isFlipX = isFlipX;
             spr.flipX = isFlipX;
+        }
+
+        internal void SetDelayEndSec(float sec) {
+            delayEndSec = sec;
+        }
+
+        internal void SetFadingOut(float duration, EasingType type, MortiseFrame.Swing.EasingMode mode) {
+            easingOutDuration = duration;
+            easingOutType = type;
+            easingOutMode = mode;
         }
 
     }

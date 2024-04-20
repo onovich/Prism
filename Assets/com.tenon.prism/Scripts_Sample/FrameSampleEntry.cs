@@ -8,18 +8,28 @@ namespace TenonKit.Prism.Sample {
         VFXFrameCore vfxCore;
         bool isInit = false;
 
+        [Header("Role And Path")]
         [SerializeField] RoleEntity role;
         [SerializeField] PathEntity path;
         [SerializeField] Transform preSpawnRoot;
+
+        [Header("Navigation UI")]
         [SerializeField] FrameNavigationPanel navigationPanel;
 
+        [Header("VFX Info")]
         [SerializeField] Sprite[] frames;
         [SerializeField] bool isLoop;
         [SerializeField] bool isFlipX;
         [SerializeField] string sortingLayerName;
         [SerializeField] int sortingOrder;
-        float frameInterval;
+        [SerializeField] float delayEndSec;
 
+        [Header("Easing Out Info")]
+        [SerializeField] MortiseFrame.Swing.EasingMode easingOutMode;
+        [SerializeField] MortiseFrame.Swing.EasingType easingOutType;
+        [SerializeField] float easingOutDuration;
+
+        float frameInterval;
         int preSpawnVFXID;
 
         void Awake() {
@@ -42,6 +52,8 @@ namespace TenonKit.Prism.Sample {
 
         void Init() {
             preSpawnVFXID = vfxCore.TryPreSpawnVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, preSpawnRoot.position, isFlipX, sortingLayerName, sortingOrder);
+            vfxCore.SetDelayEndSec(preSpawnVFXID, delayEndSec);
+            vfxCore.SetFadingOut(preSpawnVFXID, easingOutDuration, easingOutType, easingOutMode);
 
             path.Ctor();
             path.InitMoveState();
@@ -54,11 +66,15 @@ namespace TenonKit.Prism.Sample {
         }
 
         void OnAddToWorld() {
-            vfxCore.TrySpawnAndPlayVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, role.Pos, isFlipX, sortingLayerName, sortingOrder);
+            var id = vfxCore.TrySpawnAndPlayVFX_ToWorldPos("VFX_02", frames, isLoop, frameInterval, role.Pos, isFlipX, sortingLayerName, sortingOrder);
+            vfxCore.SetDelayEndSec(id, delayEndSec);
+            vfxCore.SetFadingOut(id, easingOutDuration, easingOutType, easingOutMode);
         }
 
         void OnAddToTarget() {
-            vfxCore.TrySpawnAndPlayVFX_ToTarget("VFX_02", frames, isLoop, frameInterval, role.Transform, Vector3.zero, isFlipX, sortingLayerName, sortingOrder);
+            var id = vfxCore.TrySpawnAndPlayVFX_ToTarget("VFX_02", frames, isLoop, frameInterval, role.Transform, Vector3.zero, isFlipX, sortingLayerName, sortingOrder);
+            vfxCore.SetDelayEndSec(id, delayEndSec);
+            vfxCore.SetFadingOut(id, easingOutDuration, easingOutType, easingOutMode);
         }
 
         void OnPlayManualy() {

@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.mortise.swing": {
+      "version": "ssh://git@github.com/onovich/Swing.git?path=/Assets/com.mortise.swing#main",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3126ed3ff0cd3322443f612b878d0b363debb5f1"
+    },
     "com.unity.2d.animation": {
       "version": "9.0.4",
       "depth": 1,

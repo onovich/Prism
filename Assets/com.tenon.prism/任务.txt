@@ -1,7 +1,6 @@
 # VFXFrame
-- DelayTearDown
-- FadingOut
-- BakeTool
+- 结束回调
+- BakeTool 根据文件夹及文件名排序一键导入帧动画; 根据尺寸一键切图并导入帧动画
 - Pool
 
 # VFXParticel

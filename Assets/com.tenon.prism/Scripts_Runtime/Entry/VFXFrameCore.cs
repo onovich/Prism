@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MortiseFrame.Swing;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -133,6 +134,16 @@ namespace TenonKit.Prism {
             VFXFrameDomain.FlipX(ctx, vfxID, isFlipX);
         }
 
+        // 手动设置帧动画延迟结束时长
+        public void SetDelayEndSec(int vfxID, float delaySec) {
+            VFXFrameDomain.SetDelayEndSec(ctx, vfxID, delaySec);
+        }
+
+        // 手动设置帧动画淡出配置
+        public void SetFadingOut(int vfxID, float fadeOutDuration, EasingType easingType = EasingType.Linear, EasingMode easingMode = EasingMode.None) {
+            VFXFrameDomain.SetFadingOut(ctx, vfxID, fadeOutDuration, easingType, easingMode);
+        }
+
         public void Tick(float dt) {
             var vfxRepo = ctx.Repo;
 
@@ -140,6 +151,9 @@ namespace TenonKit.Prism {
             vfxRepo.Foreach((vfxID, entity) => {
                 // 播放
                 entity.TickPlay(dt);
+
+                // 延迟结束
+                entity.TickEnd(dt);
 
                 if (entity.State == VFXFrameState.Playing) {
                     // 同步坐标

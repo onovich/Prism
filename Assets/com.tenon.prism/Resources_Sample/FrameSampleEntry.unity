@@ -1771,9 +1771,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 817533d9a9d624f608fe329f783a6f14, type: 3}
   - {fileID: 21300000, guid: 7d6f1d6b5419f41b1bc9fedf04cecfa8, type: 3}
   isLoop: 0
-  isFlipX: 0
+  isFlipX: 1
   sortingLayerName: VFX
   sortingOrder: 100
+  delayEndSec: 1
+  easingOutMode: 2
+  easingOutType: 4
+  easingOutDuration: 1
 --- !u!1 &2084945475
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
     "name": "TenonKit.Prism.Sample",
     "rootNamespace": "",
     "references": [
+        "GUID:3e1313b9d6abf4d0394d17448e7e610f",
         "GUID:eead81feccfbc42db851edfab9d4ffd3"
     ],
     "includePlatforms": [],

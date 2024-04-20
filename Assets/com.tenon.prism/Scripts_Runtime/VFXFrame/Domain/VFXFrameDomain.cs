@@ -1,3 +1,4 @@
+using MortiseFrame.Swing;
 using UnityEngine;
 
 namespace TenonKit.Prism {
@@ -22,6 +23,24 @@ namespace TenonKit.Prism {
             }
 
             entity.SetFlipX(isFlipX);
+        }
+
+        // 手动设置帧动画延迟结束时长
+        internal static void SetDelayEndSec(VFXFrameContext ctx, int vfxID, float delayEndSec) {
+            var repo = ctx.Repo;
+            if (!repo.TryGet(vfxID, out var entity)) {
+                return;
+            }
+            entity.SetDelayEndSec(delayEndSec);
+        }
+
+        // 手动设置帧动画淡出配置
+        internal static void SetFadingOut(VFXFrameContext ctx, int vfxID, float easingOutDuration, EasingType easingOutType, EasingMode easingOutMode) {
+            var repo = ctx.Repo;
+            if (!repo.TryGet(vfxID, out var entity)) {
+                return;
+            }
+            entity.SetFadingOut(easingOutDuration, easingOutType, easingOutMode);
         }
 
         // 手动执行播放
@@ -224,7 +243,8 @@ namespace TenonKit.Prism {
                                                     state,
                                                     sortingLayerName,
                                                     sortingOrder);
-            PLog.Log($"生成特效: 特效名称: {vfxName}; 特效状态: {state.ToCustomString()}");
+
+            go.name = $"vfxName - {entity.vfxID}";
 
             if (isManural) {
                 entity.Stop();
