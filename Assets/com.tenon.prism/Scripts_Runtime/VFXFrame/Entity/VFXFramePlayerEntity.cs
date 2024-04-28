@@ -72,7 +72,7 @@ namespace TenonKit.Prism {
             this.isLoop = isLoop;
             this.frameInterval = frameInterval;
             this.state = state;
-            timer = 0;
+            timer = frameInterval;
             this.go = go;
             this.spr = go.AddComponent<SpriteRenderer>();
             SetFlipX(isFlipX);
