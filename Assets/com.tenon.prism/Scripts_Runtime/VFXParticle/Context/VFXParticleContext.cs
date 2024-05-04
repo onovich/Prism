@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace TenonKit.Prism {
 
@@ -23,6 +24,9 @@ namespace TenonKit.Prism {
 
         // Const
         internal string AssetsLabel;
+
+        // Assets
+        public AsyncOperationHandle assetHandle;
 
         internal VFXParticleContext() {
             repo = new VFXParticleRepo();

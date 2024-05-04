@@ -19,13 +19,21 @@ namespace TenonKit.Prism {
         // Load
         public async Task LoadAssets() {
             try {
-                var lable = ctx.AssetsLabel;
-                var list = await Addressables.LoadAssetsAsync<GameObject>(lable, null).Task;
+                var handle = Addressables.LoadAssetsAsync<GameObject>(ctx.AssetsLabel, null);
+                var list = await handle.Task;
                 foreach (var prefab in list) {
                     ctx.Asset_AddPrefab(prefab.name, prefab);
                 }
+                ctx.assetHandle = handle;
             } catch (Exception e) {
                 PLog.Error(e.ToString());
+            }
+        }
+
+        // Release
+        public void ReleaseAssets() {
+            if (ctx.assetHandle.IsValid()) {
+                Addressables.Release(ctx.assetHandle);
             }
         }
 
