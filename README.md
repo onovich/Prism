@@ -135,5 +135,7 @@ void LateUpdate() {
 Easing Function Library
 [Swing](https://github.com/onovich/Swing)
 
+Unity Addressable
+
 # UPM URL
 ssh://git@github.com/onovich/Prism.git?path=/Assets/com.tenon.prism#main
